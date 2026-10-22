@@ -1,14 +1,17 @@
 import React from "react";
 import { AbsoluteFill, Composition, Sequence } from "remotion";
+import { Apps } from "./scenes/Apps";
 import { Decide } from "./scenes/Decide";
 import { Finale } from "./scenes/Finale";
 import { Intro } from "./scenes/Intro";
 import { Knows } from "./scenes/Knows";
 import { More } from "./scenes/More";
+import { Private } from "./scenes/Private";
 import { Say } from "./scenes/Say";
 import { Sleep } from "./scenes/Sleep";
 import { Talk } from "./scenes/Talk";
 import { Together } from "./scenes/Together";
+import { Words } from "./scenes/Words";
 import { colors, FPS, HEIGHT, SCENE, WIDTH } from "./tokens";
 
 const Scenes: React.FC<{
@@ -41,11 +44,18 @@ const PART_3 = [
   { name: "Together", component: Together },
 ];
 
+const PART_4 = [
+  { name: "Private by design", component: Private },
+  { name: "Every app", component: Apps },
+  { name: "Simple. Personal. Yours.", component: Words },
+];
+
 const AgentOS: React.FC = () => <Scenes scenes={PART_1} />;
 const AgentOSPart2: React.FC = () => <Scenes scenes={PART_2} />;
 const AgentOSPart3: React.FC = () => <Scenes scenes={PART_3} />;
+const AgentOSPart4: React.FC = () => <Scenes scenes={PART_4} />;
 const AgentOSFull: React.FC = () => (
-  <Scenes scenes={[...PART_1, ...PART_2, ...PART_3]} />
+  <Scenes scenes={[...PART_1, ...PART_2, ...PART_3, ...PART_4]} />
 );
 
 const video = { fps: FPS, width: WIDTH, height: HEIGHT };
@@ -71,9 +81,15 @@ export const RemotionRoot: React.FC = () => (
       {...video}
     />
     <Composition
+      id="AgentOSPart4"
+      component={AgentOSPart4}
+      durationInFrames={SCENE * 3}
+      {...video}
+    />
+    <Composition
       id="AgentOSFull"
       component={AgentOSFull}
-      durationInFrames={SCENE * 9}
+      durationInFrames={SCENE * 12}
       {...video}
     />
   </>
