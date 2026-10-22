@@ -4,8 +4,11 @@ import { Decide } from "./scenes/Decide";
 import { Finale } from "./scenes/Finale";
 import { Intro } from "./scenes/Intro";
 import { Knows } from "./scenes/Knows";
+import { More } from "./scenes/More";
 import { Say } from "./scenes/Say";
 import { Sleep } from "./scenes/Sleep";
+import { Talk } from "./scenes/Talk";
+import { Together } from "./scenes/Together";
 import { colors, FPS, HEIGHT, SCENE, WIDTH } from "./tokens";
 
 const Scenes: React.FC<{
@@ -32,9 +35,18 @@ const PART_2 = [
   { name: "Finale", component: Finale },
 ];
 
+const PART_3 = [
+  { name: "One more thing", component: More },
+  { name: "It talks to theirs", component: Talk },
+  { name: "Together", component: Together },
+];
+
 const AgentOS: React.FC = () => <Scenes scenes={PART_1} />;
 const AgentOSPart2: React.FC = () => <Scenes scenes={PART_2} />;
-const AgentOSFull: React.FC = () => <Scenes scenes={[...PART_1, ...PART_2]} />;
+const AgentOSPart3: React.FC = () => <Scenes scenes={PART_3} />;
+const AgentOSFull: React.FC = () => (
+  <Scenes scenes={[...PART_1, ...PART_2, ...PART_3]} />
+);
 
 const video = { fps: FPS, width: WIDTH, height: HEIGHT };
 
@@ -53,9 +65,15 @@ export const RemotionRoot: React.FC = () => (
       {...video}
     />
     <Composition
+      id="AgentOSPart3"
+      component={AgentOSPart3}
+      durationInFrames={SCENE * 3}
+      {...video}
+    />
+    <Composition
       id="AgentOSFull"
       component={AgentOSFull}
-      durationInFrames={SCENE * 6}
+      durationInFrames={SCENE * 9}
       {...video}
     />
   </>
