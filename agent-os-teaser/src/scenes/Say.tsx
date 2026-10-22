@@ -6,6 +6,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
+import { Check } from "../components/Check";
 import { Orb } from "../components/Orb";
 import {
   clamp,
@@ -43,28 +44,6 @@ const T = {
   stepGap: 15,
   out: [125, 150],
 } as const;
-
-const Check: React.FC<{ progress: number }> = ({ progress }) => (
-  <svg
-    aria-hidden
-    width={33}
-    height={33}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke={colors.orbBlue}
-    strokeWidth={2.4}
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    style={{ flexShrink: 0 }}
-  >
-    <path
-      d="M5 12.5l4.5 4.5L19 7.5"
-      pathLength={1}
-      strokeDasharray={1}
-      strokeDashoffset={1 - progress}
-    />
-  </svg>
-);
 
 export const Say: React.FC = () => {
   const frame = useCurrentFrame();
